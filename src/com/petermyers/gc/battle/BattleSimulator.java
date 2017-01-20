@@ -4,11 +4,13 @@ import java.text.DecimalFormat;
 
 public class BattleSimulator {
 	
-	void pctChanceNoCasualtiesYouAreFirstToAttack(Fleet yourFleet, Fleet enemyFleet) {
+	void pctChanceNoCasualtiesYouAreFirstToAttack() {
 		// run simulation about 10,000 times
 		int simulationCount = 0;
 		int numSimulationsGood = 0;
 		int numSimulationsBad = 0;
+		Fleet yourFleet = getYourFleet();
+		Fleet enemyFleet = getEnemyFleet();
 		int yourFleetInitialSize = yourFleet.getShips().size();
 		
 		for (; simulationCount < 10000; simulationCount++) {
@@ -19,19 +21,22 @@ public class BattleSimulator {
 			} else {
 				numSimulationsGood++;
 			}
+			// initialize fleet again
+			yourFleet = getYourFleet();
+			enemyFleet = getEnemyFleet();
 		}
 		
 		System.out.println("Simulations: " + simulationCount);
 		System.out.println("Good Simulations: " + numSimulationsGood);
 		System.out.println("Bad Simulations: " + numSimulationsBad);
-		String chanceGood = new DecimalFormat("#0.0%").format(numSimulationsGood / (numSimulationsGood + numSimulationsBad));
+		String chanceGood = new DecimalFormat("#0.0%").format((double) numSimulationsGood / (double) simulationCount);
 		System.out.println("% Chance Good: " + chanceGood);
 	}
 	
 	public Fleet getYourFleet() {
 		// Your Fleet
-		Ship yourShip1 = new Ship(5, 0, 5);
-		Ship yourShip2 = new Ship(1, 0, 5);
+		Ship yourShip1 = new Ship(1, 1, 5);
+		Ship yourShip2 = new Ship(1, 1, 5);
 		Fleet yourFleet = new Fleet();
 		yourFleet.addShip(yourShip1);
 		yourFleet.addShip(yourShip2);
@@ -56,9 +61,7 @@ public class BattleSimulator {
 		// assume total attack / (defense + health) is the order of attacking and prioritization
 		
 		BattleSimulator battleSimulation = new BattleSimulator();
-		Fleet yourFleet = battleSimulation.getYourFleet();
-		Fleet enemyFleet = battleSimulation.getEnemyFleet();
-		battleSimulation.pctChanceNoCasualtiesYouAreFirstToAttack(yourFleet, enemyFleet);
+		battleSimulation.pctChanceNoCasualtiesYouAreFirstToAttack();
 		
 	}
 	
