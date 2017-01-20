@@ -47,7 +47,7 @@ public class Fleet {
 		BattleCalculatorUtility.sortFleetByPrioritization(enemyFleet);
 		
 		// check to see if any fleets are completely destroyed
-		while (this.getShips().isEmpty() || enemyFleet.getShips().isEmpty()) {
+		while (!this.getShips().isEmpty() && !enemyFleet.getShips().isEmpty()) {
 			
 			// loop through each ship
 			
@@ -71,7 +71,7 @@ public class Fleet {
 				enemyFleet.getShips().get(j).fire(this.getShips().get(0));
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(this);
 			}
-			
+			// round is over, start a new round???
 		}
 		
 		// evaluate the damage after both have a chance to fire
