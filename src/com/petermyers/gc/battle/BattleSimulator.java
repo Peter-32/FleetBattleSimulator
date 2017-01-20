@@ -1,5 +1,7 @@
 package com.petermyers.gc.battle;
 
+import java.text.DecimalFormat;
+
 public class BattleSimulator {
 	
 	void pctChanceNoCasualtiesYouAreFirstToAttack(Fleet yourFleet, Fleet enemyFleet) {
@@ -7,16 +9,27 @@ public class BattleSimulator {
 		int simulationCount = 0;
 		int numSimulationsGood = 0;
 		int numSimulationsBad = 0;
+		int yourFleetInitialSize = yourFleet.getShips().size();
 		
-		yourFleet.attack(enemyFleet);
+		for (; simulationCount < 10000; simulationCount++) {
+			// should be arbitrary who attacks who
+			yourFleet.attack(enemyFleet);
+			if (yourFleet.getShips().size() < yourFleetInitialSize) {
+				numSimulationsBad++;
+			} else {
+				numSimulationsGood++;
+			}
+		}
 		
+		System.out.println("Simulations: " + simulationCount);
 		System.out.println("Good Simulations: " + numSimulationsGood);
 		System.out.println("Bad Simulations: " + numSimulationsBad);
-		System.out.println("% Chance Good: " + numSimulationsGood / (numSimulationsGood + numSimulationsBad));
+		String chanceGood = new DecimalFormat("#0.0%").format(numSimulationsGood / (numSimulationsGood + numSimulationsBad));
+		System.out.println("% Chance Good: " + chanceGood);
 	}
 	
 	public Fleet getYourFleet() {
-		// Fleet 1
+		// Your Fleet
 		Ship yourShip1 = new Ship(5, 0, 5);
 		Ship yourShip2 = new Ship(1, 0, 5);
 		Fleet yourFleet = new Fleet();
@@ -26,7 +39,7 @@ public class BattleSimulator {
 	}
 	
 	public Fleet getEnemyFleet() {
-		// Fleet 2
+		// Enemy Fleet
 		Ship enemyShip1 = new Ship(1, 0, 5);
 		Ship enemyShip2 = new Ship(1, 0, 5);
 		Fleet enemyFleet = new Fleet();

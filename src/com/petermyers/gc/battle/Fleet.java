@@ -61,15 +61,25 @@ public class Fleet {
 				// check if a ship has been destroyed
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(this);
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(enemyFleet);
+				
+				if (this.getShips().isEmpty() || enemyFleet.getShips().isEmpty()) {
+					return;
+				}
 			}
 			// finish looping through any remaining ships that haven't fired
 			for (; i < this.getShips().size(); i++) {
 				this.getShips().get(i).fire(enemyFleet.getShips().get(0));
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(enemyFleet);
+				if (enemyFleet.getShips().isEmpty()) {
+					return;
+				}
 			}
 			for (; j < enemyFleet.getShips().size(); j++) {
 				enemyFleet.getShips().get(j).fire(this.getShips().get(0));
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(this);
+				if (this.getShips().isEmpty()) {
+					return;
+				}
 			}
 			// round is over, start a new round???
 		}
