@@ -48,7 +48,6 @@ public class Fleet {
 		
 		// check to see if any fleets are completely destroyed
 		while (!this.getShips().isEmpty() && !enemyFleet.getShips().isEmpty()) {
-			
 			// loop through each ship
 			
 			for (i = 0, j = 0; i < this.getShips().size() && j < enemyFleet.getShips().size(); i++, j++) {
@@ -70,6 +69,7 @@ public class Fleet {
 			for (; i < this.getShips().size(); i++) {
 				this.getShips().get(i).fire(enemyFleet.getShips().get(0));
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(enemyFleet);
+				
 				if (enemyFleet.getShips().isEmpty()) {
 					return;
 				}
@@ -77,6 +77,7 @@ public class Fleet {
 			for (; j < enemyFleet.getShips().size(); j++) {
 				enemyFleet.getShips().get(j).fire(this.getShips().get(0));
 				BattleCalculatorUtility.removeFirstShipFromFleetIfDestroyed(this);
+				
 				if (this.getShips().isEmpty()) {
 					return;
 				}
