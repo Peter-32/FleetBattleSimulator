@@ -124,6 +124,14 @@ public class Ship {
 		int attackPower = (int) (Math.random() * (this.attack + 1)); // 2 attack ranges from 0 to 2
 		int defensePower = (int) (Math.random() * (enemyShip.getRemainingDefense() + 1));
 		
+		if (attackPower <= defensePower) {
+			enemyShip.setRemainingDefense(remainingDefense - attackPower);
+		} else {
+			enemyShip.setHealth(enemyShip.getHealth() + remainingDefense - attackPower);
+			enemyShip.setRemainingDefense(0);
+			
+		}
+		
 		// calculate net damage
 		int netDamage = Math.max(attackPower - defensePower, 0);
 		

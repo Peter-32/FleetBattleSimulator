@@ -82,7 +82,12 @@ public class Fleet {
 					return;
 				}
 			}
-			// round is over, start a new round???
+			
+			// reset defenses
+			BattleCalculatorUtility.resetRemainingDefenses(this);
+			BattleCalculatorUtility.resetRemainingDefenses(enemyFleet);
+			
+			// round is over. Start a new round?
 		}
 		
 		// evaluate the damage after both have a chance to fire

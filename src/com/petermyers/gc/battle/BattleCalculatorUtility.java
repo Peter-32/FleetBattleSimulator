@@ -21,4 +21,15 @@ public class BattleCalculatorUtility {
 			fleet.removeShip(fleet.getShips().get(0)); // remove it
 		}
 	}
+	
+	/**
+	 * Each round the remaining defenses regenerates if the ship is still alive.
+	 * 
+	 * @param fleet
+	 */
+	public static void resetRemainingDefenses(Fleet fleet) {
+		for (Ship ship : fleet.getShips()) {
+			ship.setRemainingDefense(ship.getDefense());
+		}
+	}
 }

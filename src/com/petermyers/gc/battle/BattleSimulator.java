@@ -46,11 +46,14 @@ public class BattleSimulator {
 	
 	public Fleet getYourFleet() {
 		// Your Fleet
-		Ship yourShip1 = new Ship(10, 25, 40);
-		Ship yourShip2 = new Ship(10, 25, 40);
-		Ship yourShip3 = new Ship(10, 25, 40);
-		Ship yourShip4 = new Ship(10, 25, 40);
-		Ship yourShip5 = new Ship(10, 25, 40);
+		double attack = 2;
+		double defense = 15;
+		double health = 40;
+		Ship yourShip1 = new Ship(attack, defense, health);
+		Ship yourShip2 = new Ship(attack, defense, health);
+		Ship yourShip3 = new Ship(attack, defense, health);
+		Ship yourShip4 = new Ship(attack, defense, health);
+		Ship yourShip5 = new Ship(attack, defense, health);
 		Fleet yourFleet = new Fleet();
 		yourFleet.addShip(yourShip1);
 		yourFleet.addShip(yourShip2);
@@ -62,11 +65,15 @@ public class BattleSimulator {
 	
 	public Fleet getEnemyFleet() {
 		// Enemy Fleet
-		Ship enemyShip1 = new Ship(10, 0, 40);
-		Ship enemyShip2 = new Ship(10, 0, 40);
-		Ship enemyShip3 = new Ship(10, 0, 40);
-		Ship enemyShip4 = new Ship(10, 0, 40);
-		Ship enemyShip5 = new Ship(10, 0, 40);
+		double attack = 8;
+		double defense = 0;
+		double health = 40;
+		Ship enemyShip1 = new Ship(attack, defense, health);
+		Ship enemyShip2 = new Ship(attack, defense, health);
+		Ship enemyShip3 = new Ship(attack, defense, health);
+		Ship enemyShip4 = new Ship(attack, defense, health);
+		Ship enemyShip5 = new Ship(attack, defense, health);
+		
 		Fleet enemyFleet = new Fleet();
 		enemyFleet.addShip(enemyShip1);
 		enemyFleet.addShip(enemyShip2);
